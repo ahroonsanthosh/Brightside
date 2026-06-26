@@ -177,7 +177,8 @@ export function CafeCinematicHero({
       gsap.set(s("ch-tagline2"), { autoAlpha: 1, clipPath: "inset(0 100% 0 0)" });
       gsap.set(s("ch-tagline-sub"), { autoAlpha: 0, y: 16 });
       gsap.set(s("ch-main-card"), { y: window.innerHeight + 180, autoAlpha: 1 });
-      gsap.set([s("ch-card-left"), s("ch-card-right"), s("ch-product-wrap"), s("ch-badge"), s("ch-product-img")], { autoAlpha: 0 });
+      // image starts visible in card; only text overlays and badges animate in
+      gsap.set([s("ch-card-left"), s("ch-card-right"), s("ch-badge")], { autoAlpha: 0 });
 
       const introTl = gsap.timeline({ delay: 0.2 });
       introTl
@@ -200,16 +201,13 @@ export function CafeCinematicHero({
         .to([s("ch-hero-text"), s("cafe-bg-grid-el")], { scale: 1.08, filter: "blur(14px)", opacity: 0.12, ease: "power2.inOut", duration: 1.2 }, 0)
         .to(s("ch-main-card"), { y: 0, ease: "power3.inOut", duration: 1.2 }, 0)
         .to(s("ch-main-card"), { width: "100%", height: "100%", borderRadius: "0px", ease: "power3.inOut", duration: 0.8 })
-        .fromTo(s("ch-product-wrap"),
-          { x: 280, z: -300, rotationY: 24, rotationX: 10, autoAlpha: 0, scale: 0.72 },
-          { x: 0, z: 0, rotationY: 0, rotationX: 0, autoAlpha: 1, scale: 1, ease: "expo.out", duration: 1.5 }, "-=0.5"
-        )
-        .fromTo(s("ch-product-img"), { scale: 1.10 }, { scale: 1, ease: "power2.out", duration: 1.3 }, "<")
-        .fromTo(s("ch-badge"), { y: 60, autoAlpha: 0, scale: 0.78, rotationZ: -6 }, { y: 0, autoAlpha: 1, scale: 1, rotationZ: 0, ease: "back.out(1.4)", duration: 0.9, stagger: 0.12 }, "-=1.1")
+        // image already visible — just animate scale for a subtle reveal effect
+        .fromTo(s("ch-product-img"), { scale: 1.08 }, { scale: 1, ease: "power2.out", duration: 1.2 }, "-=0.5")
+        .fromTo(s("ch-badge"), { y: 60, autoAlpha: 0, scale: 0.78, rotationZ: -6 }, { y: 0, autoAlpha: 1, scale: 1, rotationZ: 0, ease: "back.out(1.4)", duration: 0.9, stagger: 0.12 }, "-=0.8")
         .fromTo(s("ch-card-left"), { x: -36, autoAlpha: 0 }, { x: 0, autoAlpha: 1, ease: "power4.out", duration: 0.9 }, "-=0.9")
         .fromTo(s("ch-card-right"), { x: 36, autoAlpha: 0, scale: 0.86 }, { x: 0, autoAlpha: 1, scale: 1, ease: "expo.out", duration: 0.9 }, "<")
         .to({}, { duration: 0.8 })
-        .to([s("ch-product-wrap"), s("ch-badge"), s("ch-card-left"), s("ch-card-right")], {
+        .to([s("ch-badge"), s("ch-card-left"), s("ch-card-right")], {
           autoAlpha: 0, y: -16, ease: "power2.in", duration: 0.5,
         })
         .to(s("ch-main-card"), { y: -window.innerHeight - 200, ease: "power3.in", duration: 1.0 }, "-=0.2");
@@ -254,7 +252,6 @@ export function CafeCinematicHero({
           <div className="cafe-card-sheen" aria-hidden="true" />
 
           {cardVariant === "editorial" ? (
-            // Editorial layout: big stacked text left, full-bleed image right
             <div className="relative w-full h-full flex flex-col lg:flex-row z-10">
 
               {/* Left: editorial text column */}
@@ -297,7 +294,7 @@ export function CafeCinematicHero({
                 </div>
               </div>
 
-              {/* Right: full-bleed image panel */}
+              {/* Right: full-bleed image panel — visible immediately */}
               <div className="ch-product-wrap flex-[45] relative overflow-hidden" style={{ perspective: "1000px" }}>
                 <div
                   ref={productRef}
@@ -326,7 +323,6 @@ export function CafeCinematicHero({
             </div>
 
           ) : (
-            // Standard product layout: description left | image center | heading right
             <div className="relative w-full h-full max-w-7xl mx-auto px-5 lg:px-14 flex flex-col justify-evenly lg:grid lg:grid-cols-3 items-center lg:gap-10 z-10 py-8 lg:py-0">
 
               {/* Heading — top on mobile, right on desktop */}
@@ -344,7 +340,7 @@ export function CafeCinematicHero({
                 </div>
               </div>
 
-              {/* Product image — center */}
+              {/* Product image — center, visible immediately */}
               <div className="ch-product-wrap order-2 relative w-full h-[280px] md:h-[420px] lg:h-[520px] flex items-center justify-center" style={{ perspective: "1000px" }}>
                 <div className="relative scale-[0.82] md:scale-90 lg:scale-100 w-full h-full flex items-center justify-center">
                   <div

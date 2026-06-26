@@ -11,32 +11,32 @@ const R = "https://raw.githubusercontent.com/ahroonsanthosh/Brightside/main";
 const PHOTOS = [
   {
     src: `${R}/Screenshot%202026-06-26%20111123.png`,
-    alt: "Bright Side café",
+    alt: "Bright Side cafe interior",
     span: "col-span-2 row-span-2",
   },
   {
     src: `${R}/Screenshot%202026-06-26%20111138.png`,
-    alt: "Bright Side café",
+    alt: "Bright Side coffee and food",
     span: "col-span-1 row-span-1",
   },
   {
     src: `${R}/Screenshot%202026-06-26%20111147.png`,
-    alt: "Bright Side café",
+    alt: "Bright Side seasonal dish",
     span: "col-span-1 row-span-1",
   },
   {
     src: `${R}/Screenshot%202026-06-26%20111156.png`,
-    alt: "Bright Side café",
+    alt: "Bright Side cafe detail",
     span: "col-span-1 row-span-2",
   },
   {
     src: `${R}/Screenshot%202026-06-26%20111202.png`,
-    alt: "Bright Side café",
+    alt: "Bright Side morning setup",
     span: "col-span-1 row-span-1",
   },
   {
     src: `${R}/Screenshot%202026-06-26%20111049.png`,
-    alt: "Bright Side café",
+    alt: "Bright Side flat white with latte art",
     span: "col-span-1 row-span-1",
   },
 ];
@@ -85,9 +85,9 @@ export function GallerySection() {
         </div>
 
         <div className="gallery-grid grid grid-cols-3 grid-rows-3 gap-3 md:gap-4 h-[520px] md:h-[680px]">
-          {PHOTOS.map((photo, i) => (
+          {PHOTOS.map((photo) => (
             <div
-              key={i}
+              key={photo.alt}
               className={`gallery-item ${photo.span} rounded-2xl overflow-hidden group`}
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
