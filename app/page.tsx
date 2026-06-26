@@ -19,7 +19,7 @@ function AboutStrip() {
             className="text-3xl md:text-4xl font-bold text-white leading-snug tracking-tight"
             style={{ fontFamily: "var(--font-playfair)" }}
           >
-            A place for people who care what's in their cup.
+            A place for people who care what’s in their cup.
           </h2>
           <p className="mt-4 text-white/65 text-base font-light leading-relaxed max-w-md">
             We opened Bright Side to give Cork a café that takes the craft seriously without losing the warmth. Specialty espresso, food made fresh daily, and a corner on Washington Street that feels like yours.
@@ -86,12 +86,6 @@ export default function Home() {
         badge2Text="Mon – Fri"
         badge2Sub="8 am – 3 pm"
         badge2Emoji="☕"
-        ctaHeading="Come in. Sit down."
-        ctaDescription="Bright Side is your neighbourhood café where every morning tastes like it should."
-        ctaPrimaryLabel="Find Us"
-        ctaPrimaryHref="#contact"
-        ctaSecondaryLabel="See the Menu"
-        ctaSecondaryHref="#menu"
         productImageSrc={REPO_RAW + "/Screenshot%202026-06-26%20111049.png"}
         productImageAlt="Bright Side specialty flat white with latte art"
         scrollLength={3800}
